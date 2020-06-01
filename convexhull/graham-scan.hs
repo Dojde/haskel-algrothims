@@ -42,7 +42,7 @@ anchorSort cs = (anchor, sorted_cs)
         sorted_cs   = sortBy comp l
 
 leftTurn :: (Int, Int) -> (Int, Int) -> (Int, Int) -> Bool
-leftTurn (x1,y1) (x2, y2) (x3, y3) = direction >= 0
+leftTurn (x1,y1) (x2, y2) (x3, y3) = direction > 0
     where
         direction = (x2-x1) * (y3-y1) - (y2-y1) * (x3-x1)
 
@@ -64,5 +64,6 @@ main = do
     cs  <- forM [1..n] (\_ -> fmap (\[a, b] -> (a, b)) getListLine) -- Read input
     let (anchor, sorted_cs) = anchorSort cs
     let finalList = (:) anchor . traversePoints $ anchor : sorted_cs
-    print finalList
+    -- print finalList
     printf "%.1f\n" $ sum [getDistance x y | (x,y) <- zip finalList (tail finalList)]
+    -- writeFile "output.txt" $ unlines . map (\x -> show (fst x) ++ " " ++ show (snd x)) $ finalList
