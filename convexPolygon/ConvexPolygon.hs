@@ -4,6 +4,7 @@ import Data.List
 import Data.Tuple
 import Data.Ord
 
+-- This is a subproblem to convex hull.
 
 getListLine :: IO [Int]
 getListLine = do
@@ -41,7 +42,7 @@ anchorSort cs = (anchor, sorted_cs)
         sorted_cs   = sortBy comp l
 
 leftTurn :: (Int, Int) -> (Int, Int) -> (Int, Int) -> Bool
-leftTurn (x1,y1) (x2, y2) (x3, y3) = direction > 0
+leftTurn (x1,y1) (x2, y2) (x3, y3) = direction >= 0
     where
         direction = (x2-x1) * (y3-y1) - (y2-y1) * (x3-x1)
 
